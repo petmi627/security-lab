@@ -44,7 +44,7 @@ with open(filepath, "r") as file:
 
         if hashlib.md5(word.encode('utf-8')).hexdigest() == hash:
             password_found = True
-            print("Password found: " + word)
+            print("Password for hash {} found: {}".format(hash, word))
             break
         else:
             password_found = False
