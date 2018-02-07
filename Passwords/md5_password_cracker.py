@@ -1,3 +1,6 @@
+# This Script test if a given md5 hash matched with an entry in our dictionary
+# If that's the case you the password in plain text.
+# --help for more information
 import sys
 import os
 import hashlib
