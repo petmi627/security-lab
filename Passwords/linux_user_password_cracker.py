@@ -2,6 +2,9 @@
 import crypt
 import sys
 
+import time
+start_time = time.time()
+
 # Hash extracted from /etc/shadow.txt
 entry = "$6$bVtoNJr/GHPs7R$i7Ip5frU9wEfPfGhFGE2w6CkdTpL21zQ2zRbZyR51KkFilzOf8prHxhxpiDzuxRhS8/TZyQ04t25hDXOajIl7."
 
@@ -26,5 +29,5 @@ with open("../Data/dictionary") as file:
 if not password_found:
     print("Password was not found")
 
-print("Programm finished")
+print("Programm finished in %s seconds" % (time.time() - start_time))
 sys.exit()

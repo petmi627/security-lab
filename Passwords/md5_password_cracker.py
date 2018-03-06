@@ -5,6 +5,9 @@ import sys
 import os
 import hashlib
 
+import time
+start_time = time.time()
+
 # Parsing Arguments to Application
 try:
     import argparse
@@ -36,26 +39,28 @@ else:
         sys.exit(1)
 
 
-# Password Found variable is False
-password_found = False
+def main():
+    # Password Found variable is False
+    password_found = False
+
+    # Loop trought the dictionary file to find the hash
+    with open(filepath, "r") as file:
+        for line in file:
+            word = line.strip()
+
+            if hashlib.md5(word.encode('utf-8')).hexdigest() == hash:
+                password_found = True
+                print("Password for hash {} found: {}".format(hash, word))
+                break
+            else:
+                password_found = False
 
 
-# Loop trought the dictionary file to find the hash
-with open(filepath, "r") as file:
-    for line in file:
-        word = line.strip()
-
-        if hashlib.md5(word.encode('utf-8')).hexdigest() == hash:
-            password_found = True
-            print("Password for hash {} found: {}".format(hash, word))
-            break
-        else:
-            password_found = False
+    # If Password was not found it terminate with a string
+    if not password_found:
+        print("Password was not found")
 
 
-# If Password was not found it terminate with a string
-if not password_found:
-    print("Password was not found")
-
-print("Programm finished")
+main()
+print("Programm finished in %s seconds" % (time.time() - start_time))
 sys.exit()
